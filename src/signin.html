@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign In | Sign Up - NextHire</title>
+
+    <!-- Favicon and Web Manifest -->
+    <link rel="apple-touch-icon" sizes="180x180" href="../apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="../favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
+    <link rel="manifest" href="../site.webmanifest">
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&display=swap" rel="stylesheet">
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    
+    <!-- Custom Stylesheet -->
+    <link rel="stylesheet" href="../style.css">
+
+    <style>
+        .container {
+            max-width: 500px;
+            margin-top: 50px;
+        }
+        .toggle-btn {
+            cursor: pointer;
+            color: #ee6f57;
+            text-decoration: underline;
+        }
+        .hidden {
+            display: none;
+        }
+        .btn-primary {
+            background-color: #ee6f57;
+            border-color: #ee6f57;
+        }
+        .btn-primary:hover {
+            background-color: #d65a45;
+            border-color: #d65a45;
+        }
+        .card {
+            border: 2px solid #ee6f57;
+        }
+        .social-btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 10px 20px;
+            width: 100%;
+            margin-top: 10px;
+            text-align: center;
+            border-radius: 5px;
+        }
+        .social-btn img {
+            margin-right: 10px;
+        }
+        .social-btn.google {
+            background-color: #db4437;
+            color: white;
+        }
+        .social-btn.github {
+            background-color: #333;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="card p-4">
+            <h2 class="text-center" id="formTitle">Sign In</h2>
+            <form id="authForm">
+                <div id="userTypeField" class="hidden">
+                    <div class="mb-3">
+                        <label for="userType" class="form-label">I am a</label>
+                        <select class="form-control" id="userType" required>
+                            <option value="jobSeeker">Job Seeker</option>
+                            <option value="hireAuthority">Hire Authority</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="mb-3">
+                    <label for="email" class="form-label">Email address</label>
+                    <input type="email" class="form-control" id="email" required>
+                    <div class="invalid-feedback">Please enter a valid email.</div>
+                </div>
+                <div class="mb-3">
+                    <label for="password" class="form-label">Password</label>
+                    <input type="password" class="form-control" id="password" required>
+                    <div class="invalid-feedback">Password must be at least 6 characters long.</div>
+                </div>
+                <div id="confirmPasswordField" class="mb-3 d-none">
+                    <label for="confirmPassword" class="form-label">Confirm Password</label>
+                    <input type="password" class="form-control" id="confirmPassword">
+                    <div class="invalid-feedback">Passwords do not match.</div>
+                </div>
+
+                <!-- Job Seeker Fields -->
+                <div id="jobSeekerFields" class="hidden">
+                    <div class="mb-3">
+                        <label for="college" class="form-label">College</label>
+                        <input type="text" class="form-control" id="college" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="dob" class="form-label">Date of Birth</label>
+                        <input type="date" class="form-control" id="dob" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="address" class="form-label">Home Address</label>
+                        <input type="text" class="form-control" id="address" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="cv" class="form-label">Upload CV</label>
+                        <input type="file" class="form-control" id="cv" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="qualification" class="form-label">Highest Qualification</label>
+                        <input type="text" class="form-control" id="qualification" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="skills" class="form-label">Skills</label>
+                        <input type="text" class="form-control" id="skills" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="interestedIn" class="form-label">Interested In</label>
+                        <input type="text" class="form-control" id="interestedIn" required>
+                    </div>
+                </div>
+
+                <!-- Submit Button -->
+                <button type="submit" class="btn btn-primary w-100">Submit</button>
+            </form>
+
+            <!-- Social Login -->
+            <div id="socialLogin" class="hidden">
+               
+                <div class="social-btn github">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/9/91/Octicons-mark-github.svg" alt="GitHub" width="20">
+                    Sign in with GitHub
+                </div>
+            </div>
+
+            <p class="text-center mt-3">
+                <span id="toggleText">Don't have an account?</span>
+                <span class="toggle-btn" id="toggleForm">Sign Up</span>
+            </p>
+        </div>
+    </div>
+
+    <!-- JavaScript Files -->
+    <script src="../Script/header-footer.js"></script>
+    <script src="../Script/script.js"></script>
+    <script>
+        document.getElementById('toggleForm').addEventListener('click', function() {
+            var formTitle = document.getElementById('formTitle');
+            var toggleText = document.getElementById('toggleText');
+            var confirmPasswordField = document.getElementById('confirmPasswordField');
+            var jobSeekerFields = document.getElementById('jobSeekerFields');
+            var userTypeField = document.getElementById('userTypeField');
+            var socialLogin = document.getElementById('socialLogin');
+
+            // Toggle between Sign In and Sign Up
+            if (formTitle.innerText === 'Sign In') {
+                formTitle.innerText = 'Sign Up';
+                toggleText.innerText = 'Already have an account?';
+                confirmPasswordField.classList.remove('d-none'); // Show confirm password field
+                jobSeekerFields.classList.remove('hidden'); // Show job seeker fields
+                userTypeField.classList.remove('hidden'); // Show user type field for Sign Up
+                socialLogin.classList.remove('hidden'); // Show social login buttons
+            } else {
+                formTitle.innerText = 'Sign In';
+                toggleText.innerText = "Don't have an account?";
+                confirmPasswordField.classList.add('d-none'); // Hide confirm password field
+                jobSeekerFields.classList.add('hidden'); // Hide job seeker fields
+                userTypeField.classList.add('hidden'); // Hide user type field for Sign In
+                socialLogin.classList.add('hidden'); // Hide social login buttons
+            }
+        });
+
+        // Handle userType selection for Sign Up
+        document.getElementById('userType').addEventListener('change', function() {
+            var userType = document.getElementById('userType').value;
+            if (userType === 'hireAuthority') {
+                document.getElementById('jobSeekerFields').classList.add('hidden');
+            } else {
+                document.getElementById('jobSeekerFields').classList.remove('hidden');
+            }
+        });
+    </script>
+</body>
+</html>

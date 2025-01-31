@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Find CV - NextHire</title>
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Favicon and Web Manifest -->
+    <link rel="apple-touch-icon" sizes="180x180" href="../apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="../favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
+    <link rel="manifest" href="../site.webmanifest">
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../style.css">
+    <!-- Custom Styles -->
+    <style>
+        .profile-card {
+            border: 2px solid #ee6f57;
+            border-radius: 10px;
+            padding: 15px;
+        }
+        .profile-card h3 {
+            color: #ee6f57;
+        }
+        .btn-search:hover, .btn-list:hover {
+            background-color: #28a745 !important;
+            border-color: #28a745 !important;
+        }
+        .btn-connect {
+            background-color: #ee6f57;
+            color: #f9f9f9;
+            border: 2px solid #ee6f57;
+            padding: 8px 12px;
+            text-align: center;
+            cursor: pointer;
+            border-radius: 5px;
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+        .btn-connect:hover {
+            background-color: #28a745;
+            color: white;
+            border-color: #28a745;
+        }
+    </style>
+</head>
+<body class="container py-4">
+    <header class="text-center mb-4">
+        <h1>Find CV</h1>
+    </header>
+
+    <section id="search-filters" class="mb-4">
+        <div class="input-group mb-3">
+            <input list="skills-list" type="text" id="search-skill" class="form-control" placeholder="Search by skills or job title">
+            <datalist id="skills-list">
+                <option value="Java">
+                <option value="Python">
+                <option value="Machine Learning">
+                <option value="Cybersecurity">
+                <option value="AWS">
+                <option value="DevOps">
+                <option value="AI">
+                <option value="SQL">
+                <option value="HTML">
+                <option value="Blockchain">
+                <option value="Linux">
+                <option value="Project Management">
+                <option value="Networking">
+                <option value="Testing">
+                <option value="Data Analysis">
+                <option value="SEO">
+                <option value="Cloud Computing">
+                <option value="Game Development">
+                <option value="Embedded Systems">
+                <option value="React">
+            </datalist>
+            <select id="experience" class="form-select mx-2">
+                <option value="">Select Experience</option>
+                <option value="Fresher">Fresher</option>
+                <option value="Experienced">Experienced</option>
+            </select>
+            <button class="btn btn-primary btn-search" onclick="filterProfiles()">Search</button>
+            
+        </div>
+    </section>
+
+    <section id="profile-list" class="row">
+        <!-- Profiles will be dynamically inserted here -->
+    </section>
+
+    <!-- JavaScript Files -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        const profiles = [
+            { name: "Kundan Kumar", job: "Software Developer", company: "AWS", skills: "AWS, DevOps", experience: "Experienced" },
+            { name: "Amit Sharma", job: "Data Scientist", company: "Mu Sigma", skills: "Machine Learning, Python", experience: "Experienced" },
+            { name: "Ravi Verma", job: "Cybersecurity Analyst", company: "Wipro", skills: "Cybersecurity, Networking", experience: "Fresher" },
+            { name: "Sita Rao", job: "Cloud Engineer", company: "AWS", skills: "AWS, DevOps", experience: "Experienced" },
+            { name: "Aarav Sharma", job: "Cloud Engineer", company: "AWS", skills: "AWS, DevOps", experience: "Experienced" },
+            { name: "Priya Gupta", job: "Data Scientist", company: "IBM", skills: "Python, Machine Learning", experience: "Experienced" },
+            { name: "Rohan Verma", job: "Software Developer", company: "TCS", skills: "Java, Spring Boot", experience: "Fresher" },
+            { name: "Sneha Patel", job: "DevOps Engineer", company: "Cognizant", skills: "AWS, Docker", experience: "Experienced" },
+            { name: "Ishaan Desai", job: "AI/ML Engineer", company: "Google", skills: "Python, TensorFlow", experience: "Fresher" },
+            { name: "Karan Reddy", job: "Cybersecurity Analyst", company: "Wipro", skills: "Network Security, Cryptography", experience: "Experienced" },
+            { name: "Divya Yadav", job: "Database Administrator", company: "Oracle", skills: "SQL, NoSQL", experience: "Experienced" },
+            { name: "Vijay Nair", job: "Web Developer", company: "Accenture", skills: "HTML, CSS, JavaScript", experience: "Fresher" },
+            { name: "Meera Rao", job: "Cloud Architect", company: "Microsoft", skills: "Azure, DevOps", experience: "Experienced" },
+            { name: "Simran Singh", job: "Full Stack Developer", company: "Zoho", skills: "React, Node.js", experience: "Experienced" },
+            { name: "Manish Kumar", job: "Network Engineer", company: "Cisco", skills: "Routing, Switching", experience: "Fresher" },
+            { name: "Neha Shah", job: "Android Developer", company: "Samsung", skills: "Java, Kotlin", experience: "Fresher" },
+            { name: "Siddharth Joshi", job: "Product Manager", company: "Amazon", skills: "Agile, Product Development", experience: "Experienced" },
+            { name: "Aadhya Mehta", job: "Cloud Security Engineer", company: "IBM", skills: "AWS Security, IAM", experience: "Experienced" },
+            { name: "Rahul Kapoor", job: "Data Engineer", company: "Mu Sigma", skills: "Python, Hadoop", experience: "Experienced" },
+            { name: "Rhea Agarwal", job: "UI/UX Designer", company: "Adobe", skills: "Figma, Photoshop", experience: "Fresher" },
+            { name: "Vivek Iyer", job: "Software Tester", company: "Infosys", skills: "Automation Testing, Selenium", experience: "Fresher" },
+            { name: "Shruti Saxena", job: "Business Analyst", company: "Capgemini", skills: "Data Analysis, Reporting", experience: "Experienced" },
+            { name: "Arjun Mehra", job: "Blockchain Developer", company: "Tech Mahindra", skills: "Blockchain, Solidity", experience: "Fresher" },
+            { name: "Amit Sharma", job: "SAP Consultant", company: "Deloitte", skills: "SAP, Business Solutions", experience: "Experienced" },
+            { name: "Ananya Gupta", job: "AI Researcher", company: "NVIDIA", skills: "Deep Learning, Neural Networks", experience: "Experienced" },
+            { name: "Suresh Babu", job: "Big Data Engineer", company: "Cognizant", skills: "Hadoop, Spark", experience: "Experienced" },
+            { name: "Pooja Chauhan", job: "Product Designer", company: "Google", skills: "Wireframing, Prototyping", experience: "Fresher" },
+            { name: "Rajesh Thakur", job: "Frontend Developer", company: "Infosys", skills: "HTML, CSS, JavaScript", experience: "Fresher" },
+            { name: "Priya Das", job: "DevOps Engineer", company: "Cognizant", skills: "CI/CD, Kubernetes", experience: "Experienced" }
+        ];
+        
+        function filterProfiles() {
+            const searchSkill = document.getElementById("search-skill").value.toLowerCase();
+            const experience = document.getElementById("experience").value;
+            const profileList = document.getElementById("profile-list");
+            profileList.innerHTML = "";
+            
+            const filteredProfiles = profiles.filter(profile =>
+                (searchSkill === "" || profile.skills.toLowerCase().includes(searchSkill)) &&
+                (experience === "" || profile.experience === experience)
+            );
+            
+            displayProfiles(filteredProfiles);
+        }
+
+        function listAllProfiles() {
+            displayProfiles(profiles);
+        }
+
+        function displayProfiles(profileArray) {
+            const profileList = document.getElementById("profile-list");
+            profileList.innerHTML = "";
+            
+            if (profileArray.length === 0) {
+                profileList.innerHTML = "<p class='text-danger'>No matching profiles found.</p>";
+            } else {
+                profileArray.forEach(profile => {
+                    const profileCard = document.createElement("div");
+                    profileCard.classList.add("col-md-4", "mb-3");
+                    profileCard.innerHTML = `
+                        <div class="card profile-card">
+                            <h3>${profile.name}</h3>
+                            ${profile.experience === "Experienced" ? `<p><strong>Role:</strong> ${profile.job}</p>` : ""}
+                            <p><strong>Company:</strong> ${profile.company}</p>
+                            <p><strong>Skills:</strong> ${profile.skills}</p>
+                            <p><strong>Experience:</strong> ${profile.experience}</p>
+                            <button class="btn-connect" onclick="connect(${profile.name})">Connect</button>
+                        </div>
+                    `;
+                    profileList.appendChild(profileCard);
+                });
+            }
+        }
+
+        function connect(name) {
+            alert(`You have sent a connection request to ${name}`);
+        }
+
+        // Initial load
+        listAllProfiles();
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="../Script/header-footer.js"></script>
+    <script src="../Script/script.js"></script>
+
+</body>
+</html>
