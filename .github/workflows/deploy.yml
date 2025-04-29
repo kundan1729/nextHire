@@ -3,31 +3,35 @@ name: Deploy to GitHub Pages
 on:
   push:
     branches:
-      - main  # Set a branch name to trigger deployment
+      - master
   pull_request:
 
 jobs:
-  deploy:
+  build-and-deploy:
     runs-on: ubuntu-latest
-    permissions:
-      contents: write
+    concurrency: ci-${{ github.ref }}
     steps:
-      - uses: actions/checkout@v4
-        with:
-          fetch-depth: 0
+      - name: Checkout 🛎️
+        uses: actions/checkout@v4
 
-      - name: Setup Node
+      - name: Setup Node.js ⚙️
         uses: actions/setup-node@v4
         with:
           node-version: '20'
-          
-      - name: Install dependencies
-        run: npm install
+          cache: 'npm'
 
-      - name: Deploy
-        uses: peaceiris/actions-gh-pages@v3
-        if: github.ref == 'refs/heads/main'
+      - name: Install Dependencies 📦
+        run: |
+          npm ci || npm install
+
+      - name: Build 🔧
+        run: |
+          mkdir -p dist
+          cp -r index.html style.css src Script *.png *.ico site.webmanifest dist/
+
+      - name: Deploy to GitHub Pages 🚀
+        if: github.ref == 'refs/heads/master'
+        uses: JamesIves/github-pages-deploy-action@v4
         with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: .
-          force_orphan: true 
+          folder: dist
+          clean: true 

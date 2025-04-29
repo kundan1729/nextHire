@@ -2,11 +2,14 @@
   "name": "nexthire",
   "version": "1.0.0",
   "homepage": "https://kundan1234.github.io/nextHire",
+  "private": true,
   "dependencies": {
     "bootstrap": "^5.3.3"
   },
   "scripts": {
-    "deploy": "gh-pages -d ."
+    "predeploy": "mkdir -p dist && cp -r index.html style.css src Script *.png *.ico site.webmanifest dist/",
+    "deploy": "gh-pages -d dist",
+    "build": "mkdir -p dist && cp -r index.html style.css src Script *.png *.ico site.webmanifest dist/"
   },
   "devDependencies": {
     "gh-pages": "^6.1.1"
