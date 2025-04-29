@@ -10,18 +10,18 @@ document.addEventListener("DOMContentLoaded", function () {
     header.className = "navbar";
     header.innerHTML = `
         <div class="logo">
-            <a href="/index.html">
-                <img src="/src/Images/logonextHire.png" alt="NextHire Logo">
+            <a href="index.html">
+                <img src="src/Images/logonextHire.png" alt="NextHire Logo">
                 nextHire
             </a>
         </div>
         <div class="nav-links" id="navLinks">
-        <a href="/src/about.html">About us</a>  
-        <a href="/src/jobs.html">Find a Job</a>
-        <a href="/src/hire.html">Find CV</a>
-        <a href="/src/post_Job.html">Post a Job</a>  
-        <a href="/src/signin.html">Sign In | Sign Up</a>
-            <a href="/src/resource.html">Resources</a>
+        <a href="src/about.html">About us</a>  
+        <a href="src/jobs.html">Find a Job</a>
+        <a href="src/hire.html">Find CV</a>
+        <a href="src/post_Job.html">Post a Job</a>  
+        <a href="src/signin.html">Sign In | Sign Up</a>
+            <a href="src/resource.html">Resources</a>
         </div>
         <div class="hamburger-menu" onclick="toggleMenu()">
             <div class="bar"></div>
@@ -53,37 +53,37 @@ document.addEventListener("DOMContentLoaded", function () {
         <div class="footer-left">
             <h1>We're here to help</h1>
             <p>Visit our Help Center for answers to common questions or contact us directly.</p>
-            <button onclick="location.href='/src/help.html'">Help Center</button>
-            <button onclick="location.href='/src/contact.html'">Contact Support</button>
+            <button onclick="location.href='src/help.html'">Help Center</button>
+            <button onclick="location.href='src/contact.html'">Contact Support</button>
         </div>
         
         <div class="footer-sections">
             <div class="footer-mid">
                 <h1>nextHire</h1>
-                <a href="/src/about.html">About nextHire</a>
-                <a href="/index.html">Security</a>  
-                <a href="/index.html">Terms</a>
-                <a href="/index.html">Privacy Center and Ad Choices</a>
-                <a href="/index.html">Work at nextHire</a>
-                <a href="/index.html">Sitemap</a>
+                <a href="src/about.html">About nextHire</a>
+                <a href="index.html">Security</a>  
+                <a href="index.html">Terms</a>
+                <a href="index.html">Privacy Center and Ad Choices</a>
+                <a href="index.html">Work at nextHire</a>
+                <a href="index.html">Sitemap</a>
             </div>
 
             <div class="footer-mid">
                 <h1>Employers</h1>
-                <a href="/src/post_Job.html">Post a Job</a>
-                <a href="/index.html">Products</a>  
-                <a href="/index.html">Pricing</a>
-                <a href="/index.html">nextHire Insights</a>
-                <a href="/index.html">FAQ</a>
+                <a href="src/post_Job.html">Post a Job</a>
+                <a href="index.html">Products</a>  
+                <a href="index.html">Pricing</a>
+                <a href="index.html">nextHire Insights</a>
+                <a href="index.html">FAQ</a>
             </div>
 
             <div class="footer-mid">
                 <h1>Resources</h1>
-                <a href="/src/hiring-guide.html">How to Hire Employees</a>
-                <a href="/src/job-description.html">How to Write Job Descriptions</a>  
-                <a href="/src/nextHire-guide.html">Guide to Hiring with nextHire</a>
-                <a href="/src/interview-questions.html">Interview Question Guide</a>
-                <a href="/src/events.html">nextHire Events</a>
+                <a href="src/hiring-guide.html">How to Hire Employees</a>
+                <a href="src/job-description.html">How to Write Job Descriptions</a>  
+                <a href="src/nextHire-guide.html">Guide to Hiring with nextHire</a>
+                <a href="src/interview-questions.html">Interview Question Guide</a>
+                <a href="src/events.html">nextHire Events</a>
             </div>
         </div>
 

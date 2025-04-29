@@ -28,6 +28,11 @@ jobs:
         run: |
           mkdir -p dist
           cp -r index.html style.css src Script *.png *.ico site.webmanifest dist/
+          # Ensure all directories exist in dist
+          mkdir -p dist/src/Images
+          # Copy any missing files
+          cp -r src/* dist/src/ || true
+          cp -r Script/* dist/Script/ || true
 
       - name: Deploy to GitHub Pages 🚀
         if: github.ref == 'refs/heads/master'
