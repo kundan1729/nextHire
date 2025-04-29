@@ -1,0 +1,14 @@
+{
+  "name": "nexthire",
+  "version": "1.0.0",
+  "homepage": "https://kundan1234.github.io/nextHire",
+  "dependencies": {
+    "bootstrap": "^5.3.3"
+  },
+  "scripts": {
+    "deploy": "gh-pages -d ."
+  },
+  "devDependencies": {
+    "gh-pages": "^6.1.1"
+  }
+}
